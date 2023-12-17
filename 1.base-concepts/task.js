@@ -19,13 +19,13 @@ function solveEquation(a, b, c) {
 
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
   let totalAmount;
-  let loanBody = amount - contribution;
-  let timeNow = new Date();
-  let loanTerm = countMonths - timeNow;
-  loanTerm = loanTerm / 1000 / 60 / 60 / 24 / 30;
-  let monthlyPartPercent = (percent / 100) / 12;
-  let monthFee = loanBody * (monthlyPartPercent + (monthlyPartPercent / (((1 + monthlyPartPercent) ** loanTerm) - 1)));
-  totalAmount = +(monthFee * loanTerm).toFixed(2);
+
+  percent = percent / 100 / 12;
+
+  let loanBody = amount - contribution;  
+  let monthlyPayment = loanBody * (percent + (percent / (((1 + percent) ** countMonths) - 1)));
+  totalAmount = +(monthlyPayment * countMonths).toFixed(2);
   console.log(totalAmount);
+
   return totalAmount;
 }
