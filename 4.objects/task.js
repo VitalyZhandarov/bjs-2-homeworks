@@ -12,10 +12,10 @@ Student.prototype.setSubject = function (subjectName) {
 Student.prototype.addMarks = function (...marks) {
     if (this.marks) {
         this.marks.push(...marks);
-      } else {
+    } else {
         console.log ("Студент отчислен");
         return;   
-      }  
+    }  
 }
 
 Student.prototype.getAverage = function () {
