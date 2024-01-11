@@ -114,10 +114,42 @@ if (!bookOf2023Year) {
 	library.addBook(newbookOf2023Year);
 }
 
-
 const givenBook = library.giveBookByName("Анафем");
 givenBook.state = 65;
 
 givenBook.fix();
 
 library.addBook(givenBook);
+
+/* Задача 3 */
+
+class Student {
+    constructor(name) {
+        this.name = name;
+        this.marks = {};
+    }
+  
+    addMark(mark, subject) {
+      if (mark < 2 || mark > 5) {
+        return;
+      } else {
+        if (!this.marks.hasOwnProperty(subject)) {
+          this.marks[subject] = [];
+        }
+        this.marks[subject].push(mark);
+      }
+    }
+
+    getAverageBySubject(subject) {
+        if (!this.marks.hasOwnProperty(subject)) {
+          return 0;
+        } else {
+          return this.marks[subject].reduce((acc, mark) => acc + mark / this.marks[subject].length, 0);
+        }
+     }
+
+     getAverage() {
+        let subjects = Object.keys(this.marks);
+        return subjects.reduce((acc, subject) => acc + this.getAverageBySubject(subject) / subjects.length,0);
+     }
+  }
